@@ -8,9 +8,9 @@ public class Hechizos {
     
     private String nombre;
     private int nivel;
-    private Boolean v;
-    private Boolean s;
-    private Boolean m;
+    private Boolean v; //Verbal. El hechizo requiere de pronunciar una palabra mágica
+    private Boolean s; //Somatico. El hechizo requiere de algún movimiento
+    private Boolean m; //Material. El hechizo requiere de algún material
     
     public static class tiempo_Casteo{
         public static String[] tiempo_Casteo={"1 Accion","Accion Gratis",
