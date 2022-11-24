@@ -8,10 +8,22 @@
     tools:context=".Setear_Caracteristicas">
 
     <TextView
+        android:id="@+id/tvPersonaje"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:layout_marginBottom="10dp"
+        android:textAlignment="center"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@id/tv"
+        app:layout_constraintStart_toStartOf="@id/tv"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="110dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:text="Lanzamiento de Dados"
         android:textAlignment="center"

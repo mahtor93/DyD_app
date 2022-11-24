@@ -1,8 +1,10 @@
 package com.example.creacindepersonaje;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Adapter;
@@ -52,6 +54,7 @@ public class Setear_Caracteristicas extends AppCompatActivity {
     private TextView tvSelectedValueCAR;
     int lanzamientos =1;
     private Button btnReset;
+    private static int CODE_CARACT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,6 +94,7 @@ public class Setear_Caracteristicas extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         btnReset.setEnabled(false);
     }
+
 
     private void resetSpinners(){
         tvSelectedValueSTR.setText("");
@@ -292,6 +296,8 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                 //Añadir intent y pasar datos de un objeto instanciado
             }
         });
+
+
 
     }
 

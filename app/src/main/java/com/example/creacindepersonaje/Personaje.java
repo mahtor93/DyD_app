@@ -1,6 +1,10 @@
 package com.example.creacindepersonaje;
 
- public class Personaje {
+import java.io.Serializable;
+
+public class Personaje implements Serializable {
+
+
 
      private String Nombre;
      private String Raza;
@@ -40,6 +44,7 @@ package com.example.creacindepersonaje;
 
      private int espacioConjuros;
 
+
      public int getEspacioConjuros() {
          return espacioConjuros;
      }
@@ -55,7 +60,7 @@ package com.example.creacindepersonaje;
      private int PO;//piezas de oro
      private int PPT;//¿?
 
-     private String AptitudMagica; //Debe ser una característica
+     private boolean AptitudMagica; //true: usa hechizos, false: no usa hechizos
      private int CDSalvConjuro; //Clase dificultad salvacion de conjuro
      private int BonificadorAtaqueConjuro;
 
@@ -387,11 +392,11 @@ package com.example.creacindepersonaje;
          this.PPT = PPT;
      }
 
-     public String getAptitudMagica() {
+     public boolean getAptitudMagica() {
          return AptitudMagica;
      }
 
-     public void setAptitudMagica(String AptitudMagica) {
+     public void setAptitudMagica(boolean AptitudMagica) {
          this.AptitudMagica = AptitudMagica;
      }
 
