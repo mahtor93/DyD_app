@@ -3,11 +3,18 @@ package com.example.creacindepersonaje;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+
+import java.util.ArrayList;
 
 public class CreatedPersonaje extends AppCompatActivity {
 
@@ -20,7 +27,17 @@ public class CreatedPersonaje extends AppCompatActivity {
 
     private Spinner spArma,spArmadura;
 
+    private ArrayList<Arma> armas;
+    private ArrayList<String> nameArmas;
+
+    private ArrayList<Armadura> armaduras;
+    private ArrayList<String> nameArmaduras;
+
+    private ArrayAdapter<String> adapterArmas,adapterArmaduras;
+
     Personaje p = new Personaje();
+    Arma arma = new Arma();
+    Armadura armadura = new Armadura();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -140,10 +157,113 @@ public class CreatedPersonaje extends AppCompatActivity {
         tvBonoDES.setText((int) p.getModDes()+"");
         tvBonoSAB.setText((int) p.getModSab()+"");
 
+        try {
+
+        DBConnection connection = new DBConnection(CreatedPersonaje.this,"baseEquipo",null,1);
+        SQLiteDatabase db = connection.getReadableDatabase();
+
+        Cursor armasPicaro = db.rawQuery("SELECT nombre,damage,tipoArma,tipoDamage FROM armas WHERE tipoArma IN('Ligera','A Distancia');",null);
+        Cursor armadurasPicaro = db.rawQuery("SELECT nombre,claseArmadura,peso,fuerzaRequerida FROM armaduras WHERE peso BETWEEN 8 and 15;",null);
+        Cursor armasDruida = db.rawQuery("SELECT nombre,damage,tipoArma,tipoDamage FROM armas WHERE tipoArma <>'Pesada';",null);
+        Cursor armadurasDruida = db.rawQuery("SELECT nombre,claseArmadura,peso,FuerzaRequerida FROM armaduras WHERE peso BETWEEN 8 AND 40;",null);
+        Cursor armasCursor = db.rawQuery("SELECT nombre,damage,tipoArma,tipoDamage FROM armas",null);
+        Cursor armadurasCursor = db.rawQuery("SELECT nombre,claseArmadura,peso,fuerzaRequerida FROM armaduras",null);
+
+            armas = new ArrayList<>();
+            nameArmas=new ArrayList<>();
+            armaduras = new ArrayList<>();
+            nameArmaduras = new ArrayList<>();
+            nameArmas.add("Seleccione");
+            nameArmaduras.add("Seleccione");
+            String nameArma;
+            String nameArmadura;
+
+
+            if(p.getClase().equals(Personaje.Clases.Clases[0]) || p.getClase().equals(Personaje.Clases.Clases[2]) ||p.getClase().equals(Personaje.Clases.Clases[4])){
+                if(p.getClase().equals(Personaje.Clases.Clases[2])){
+                    nameArmaduras.clear();
+                    spArmadura.setEnabled(false);
+                    nameArmaduras.add("No usa Armaduras");
+                }
+
+                if (armasPicaro.moveToFirst()) {
+                    do {
+                        nameArma = armasPicaro.getString(0);
+                        nameArmas.add(nameArma);
+                        arma.setNombre(nameArma);
+                        arma.setDamage(armasPicaro.getInt(1));
+                        armas.add(arma);
+                    } while (armasPicaro.moveToNext());
+                }
+                if (armadurasPicaro.moveToFirst()){
+                    do{
+                        nameArmadura = armadurasPicaro.getString(0);
+                        nameArmaduras.add(nameArmadura);
+                        armadura.setNombre(nameArmadura);
+                        armadura.setClaseArmadura(armadurasPicaro.getInt(1));
+                        armadura.setFuerzaReq(armadurasPicaro.getInt(3));
+                        armaduras.add(armadura);
+                    }while(armadurasPicaro.moveToNext());
+                }
+            }
+            if(p.getClase().equals(Personaje.Clases.Clases[1])){ //Guerrero
+                if(armasCursor.moveToFirst()){
+                    do{
+                        nameArma = armasCursor.getString(0);
+                        nameArmas.add(nameArma);
+                        arma.setNombre(nameArma);
+                        arma.setDamage(armasCursor.getInt(1));
+                        armas.add(arma);
+                    }while(armasCursor.moveToNext());
+                }
+
+                if(armadurasCursor.moveToFirst()){
+                    do{
+                        nameArmadura = armadurasCursor.getString(0);
+                        nameArmaduras.add(nameArmadura);
+                        armadura.setNombre(nameArmadura);
+                        armadura.setClaseArmadura(armadurasCursor.getInt(1));
+                        armadura.setFuerzaReq(armadurasCursor.getInt(3));
+                        armaduras.add(armadura);
+                    }while(armadurasCursor.moveToNext());
+                }
+
+            }
+            if(p.getClase().equals(Personaje.Clases.Clases[3])){
+                if(armasDruida.moveToFirst()){
+                    do{
+                        nameArma = armasDruida.getString(0);
+                        nameArmas.add(nameArma);
+                        arma.setNombre(armasDruida.getString(1));
+                        arma.setDamage(armasDruida.getInt(2));
+                        armas.add(arma);
+                    }while(armasDruida.moveToNext());
+                }
+                if(armadurasDruida.moveToFirst()){
+                    do{
+                        nameArmadura = armadurasDruida.getString(0);
+                        nameArmaduras.add(nameArmadura);
+                        armadura.setNombre(nameArmadura);
+                        armadura.setClaseArmadura(armadurasDruida.getInt(1));
+                        armadura.setFuerzaReq(armadurasDruida.getInt(3));
+                        armaduras.add(armadura);
+                    }while(armadurasDruida.moveToNext());
+                }
+            }
 
 
 
+            adapterArmas = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,nameArmas);
+            adapterArmas.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spArma.setAdapter(adapterArmas);
 
+            adapterArmaduras = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,nameArmaduras);
+            adapterArmaduras.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spArmadura.setAdapter(adapterArmaduras);
+
+        }catch(Exception ex){
+            Toast.makeText(this, "Error"+ex, Toast.LENGTH_SHORT).show();
+        }
 
         btnCrearPersonaje.setOnClickListener(new View.OnClickListener() {
             @Override

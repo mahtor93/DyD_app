@@ -11,6 +11,36 @@ public class Personaje implements Serializable {
      private String Arma;
      private String Armadura;
 
+     private Boolean SxP; //Boolean puede tomar valor true, false y 0
+     private int Fuerza;
+     private int Destreza;
+     private int Constitucion;
+     private int Inteligencia;
+     private int Sabiduria;
+     private int Carisma;
+
+     private int ModStr;
+     private int ModDes;
+     private int ModCon;
+     private int ModInt;
+     private int ModSab;
+     private int ModCar;
+
+     private int Vel;
+     private int CA; //Clase de armadura
+     private int PG; //Puntos de golpe o la Vida, también conocido como HP
+     private int PGT; //Puntos de golpe temporales
+
+     private int Level;
+     private int EXP;
+
+     private int espacioConjuros;
+     private int AptitudMagica; //true o 1: usa hechizos, false o 0: no usa hechizos
+
+     private int Inspiracion;
+     private int BonoCompetencia;
+     private int Iniciativa;
+
     public String getArma() {
         return Arma;
     }
@@ -34,33 +64,6 @@ public class Personaje implements Serializable {
          this.Raza = Raza;
      }
 
-     private Boolean SxP; //Boolean puede tomar valor true, false y 0
-     private int Fuerza;
-     private int Destreza;
-     private int Constitucion;
-     private int Inteligencia;
-     private int Sabiduria;
-     private int Carisma;
-
-     private double ModStr;
-     private double ModDes;
-     private double ModCon;
-     private double ModInt;
-     private double ModSab;
-     private double ModCar;
-
-     private int Vel;
-     private int CA; //Clase de armadura
-     private int PG; //Puntos de golpe o la Vida
-     private int PGT; //Puntos de golpe temporales
-
-     private int Level;
-
-     private int EXP;
-
-     private int espacioConjuros;
-
-
      public int getEspacioConjuros() {
          return espacioConjuros;
      }
@@ -69,19 +72,7 @@ public class Personaje implements Serializable {
          this.espacioConjuros = espacioConjuros;
      }
 
-     //Recursos
-     private int PC;//piezas de cobre
-     private int PP;//piezas de plata
-     private int PE;//piezas de estaño
-     private int PO;//piezas de oro
-     private int PPT;//¿?
-
-     private boolean AptitudMagica; //true: usa hechizos, false: no usa hechizos
-
-
-     private int Inspiracion;
-     private int BonoCompetencia;
-     private int Iniciativa;
+     
 
      public String getNombre() {
          return Nombre;
@@ -212,12 +203,12 @@ public class Personaje implements Serializable {
      }
 
 
-     public double getModStr() {
+     public int getModStr() {
          return ModStr;
      }
 
      public void setModStr() {
-         this.ModStr = calcModCaract(this.getFuerza());
+         this.ModStr = (int) calcModCaract(this.getFuerza());
      }
 
      public int getModDes() {
@@ -236,28 +227,28 @@ public class Personaje implements Serializable {
          this.ModCon = (int) calcModCaract(this.getConstitucion());
      }
 
-     public double getModInt() {
+     public int getModInt() {
          return ModInt;
      }
 
      public void setModInt() {
-         this.ModInt = calcModCaract(this.getInteligencia());
+         this.ModInt = (int) calcModCaract(this.getInteligencia());
      }
 
-     public double getModSab() {
+     public int getModSab() {
          return ModSab;
      }
 
      public void setModSab() {
-         this.ModSab = calcModCaract(this.getSabiduria());
+         this.ModSab = (int) calcModCaract(this.getSabiduria());
      }
 
-     public double getModCar() {
+     public int getModCar() {
          return ModCar;
      }
 
      public void setModCar() {
-         this.ModCar = calcModCaract(this.getCarisma());
+         this.ModCar = (int) calcModCaract(this.getCarisma());
      }
 
      public int getVel() {
@@ -349,51 +340,11 @@ public class Personaje implements Serializable {
          this.EXP = EXP;
      }
 
-     public int getPC() {
-         return PC;
-     }
-
-     public void setPC(int PC) {
-         this.PC = PC;
-     }
-
-     public int getPP() {
-         return PP;
-     }
-
-     public void setPP(int PP) {
-         this.PP = PP;
-     }
-
-     public int getPE() {
-         return PE;
-     }
-
-     public void setPE(int PE) {
-         this.PE = PE;
-     }
-
-     public int getPO() {
-         return PO;
-     }
-
-     public void setPO(int PO) {
-         this.PO = PO;
-     }
-
-     public int getPPT() {
-         return PPT;
-     }
-
-     public void setPPT(int PPT) {
-         this.PPT = PPT;
-     }
-
-     public boolean getAptitudMagica() {
+     public int getAptitudMagica() {
          return AptitudMagica;
      }
 
-     public void setAptitudMagica(boolean AptitudMagica) {
+     public void setAptitudMagica(int AptitudMagica) {
 
 
          this.AptitudMagica = AptitudMagica;
@@ -459,7 +410,4 @@ public class Personaje implements Serializable {
             }
             return resultDado;     
         }
-
-
-
     }
