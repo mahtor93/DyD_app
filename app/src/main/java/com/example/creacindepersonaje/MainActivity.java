@@ -40,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapterClass;
 
     Personaje p = new Personaje();
+    String name = "¿Cuál es tu nombre?";
+    String error;
+    boolean nomb = false;
+    boolean raza = false;
+    boolean clase = false;
+    boolean variante = false;
+    boolean complete = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
             spClass = findViewById(R.id.spClass);
             spRace = findViewById(R.id.spRace);
             spVarRace = findViewById(R.id.spVarRace);
+
     }
 
     private void iniciarEventos(){
@@ -64,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         selectedRace = new ArrayList<>();
         ClassPj = new ArrayList<>();
         spVarRace.setEnabled(false);
+        txtNombre.setText(name);
 
         Context context = getApplicationContext();
 
@@ -96,29 +106,57 @@ public class MainActivity extends AppCompatActivity {
                 txtNombre.setText("");
             }
         });
-
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(txtNombre.getText().length()==0||txtNombre.getText().toString()=="¿Cuál es tu nombre?"){
-                    closeKeyboard();
-                    Toast.makeText(
-                            getApplicationContext(),
-                            "No has ingresado un nombre",
-                            Toast.LENGTH_LONG
-                    ).show();
-                }else {
-                    p.setNombre(txtNombre.getText().toString());
-                    p.setClase(spClass.getSelectedItem().toString());
-                    p.setRaza(spRace.getSelectedItem().toString());
-                    if(spVarRace.getSelectedItemPosition()!=4 || spVarRace.getSelectedItemPosition()!=0){
-                        p.setSub_Raza(spVarRace.getSelectedItem().toString());
-                    }else {
-                        p.setSub_Raza("");
-                    }
-                    openActivity();
-                    closeKeyboard();
+                error ="";
+                if(txtNombre.getText().toString().equals(name)|| txtNombre.getText().toString().length()==0){
+                    error+="Debes elegír un nombre";
                 }
+                else{
+                    nomb = true;
+                }
+
+                if(spRace.getSelectedItemPosition()==0){
+                    //La raza esta sin seleccionar
+                    error+="\nDebes elegír una Raza";
+
+                }else{
+                    raza = true;
+                }
+
+                if(spRace.getSelectedItemPosition()!=4){
+                    //La raza no es humano
+                    if(spVarRace.getSelectedItemPosition()==0){
+                        //La subclase esta sin seleccionar
+                        error+="\nDebes elegír una variante de Raza";
+                    }
+                    else{
+                        variante = true;
+                    }
+                }else{
+                    variante = true;
+                }
+
+                if(spClass.getSelectedItemPosition()==0){
+                    error+="\nDebes elegír una Clase";
+                }else{
+                    clase =true;
+                }
+
+                if(nomb&&raza&&variante&&clase){
+
+                    Intent intent = new Intent(MainActivity.this,Setear_Caracteristicas.class);
+                    intent.putExtra("Nombre",txtNombre.getText().toString());
+                    intent.putExtra("Raza",spRace.getSelectedItem().toString());
+                    intent.putExtra("Clase",spClass.getSelectedItem().toString());
+                    if(spRace.getSelectedItemPosition()==4){intent.putExtra("SubRaza","");}
+                    if(spRace.getSelectedItemPosition()!=4){intent.putExtra("SubRaza",spVarRace.getSelectedItem().toString());}
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(MainActivity.this, error, Toast.LENGTH_SHORT).show();
+                }
+
 
             }
         });
@@ -177,12 +215,5 @@ public class MainActivity extends AppCompatActivity {
             imm.hideSoftInputFromWindow(view.getWindowToken(),0);
         }
     }
-
-    private void openActivity(){
-        Intent intent = new Intent(this,Setear_Caracteristicas.class);
-        startActivity(intent);
-    }
-
-
 
 }

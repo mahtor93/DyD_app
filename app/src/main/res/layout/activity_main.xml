@@ -16,7 +16,6 @@
 
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="¿Cuál es tu nombre?"
         android:textAlignment="center"
         android:textColor="#969696"
         android:textSize="24sp"

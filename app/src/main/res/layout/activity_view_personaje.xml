@@ -5,84 +5,165 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Setear_Caracteristicas">
+    tools:context=".CreatedPersonaje">
 
     <TextView
-        android:id="@+id/tv"
+        android:id="@+id/tvNombre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:text="Lanzamiento de Dados"
+        android:text="Name"
         android:textAlignment="center"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="34sp" />
 
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:gravity="center"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <TextView
-            android:id="@+id/tvCV1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 -"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvCV2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 -"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvCV3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 -"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvCV4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 -"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvCV5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0 -"
-            android:textSize="34sp" />
-
-        <TextView
-            android:id="@+id/tvCV6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textSize="34sp" />
-    </TableRow>
-
-    <Button
-        android:id="@+id/btnLanzar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:text="Lanzar Dados"
-
-        />
 
     <LinearLayout
+        android:id="@+id/lyRazaSubClase"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvRaza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Raza"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvSubRaza"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Variante"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvClase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Clase"
+            android:textSize="24sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyStat"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvVida"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HP :"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvVidaShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="###"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvArmor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="CA :"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvCAShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="###"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvVel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="VEL :"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvVELShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="###"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lyLVLEXP"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvVEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Nivel"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvVELShowCreate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="###"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/tvEXP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Experiencia"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvEXPShow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="###"
+            android:textSize="24sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lyBonos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="TextView"
+            android:textSize="24sp" />
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/lyFuerza"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:orientation="horizontal">
 
         <TextView
@@ -103,15 +184,25 @@
             android:textAlignment="center"
             android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/sp_fuerza"
+        <TextView
+            android:id="@+id/BonoSTR"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="386dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoSTR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lyDestreza"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -133,16 +224,25 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/sp_dest"
+        <TextView
+            android:id="@+id/BonoDES"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="429dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoDES"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lyConstitucion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -164,16 +264,25 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/sp_const"
+        <TextView
+            android:id="@+id/BonoCON"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="467dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoCON"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lyCarisma"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -195,17 +304,25 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/sp_carism"
+        <TextView
+            android:id="@+id/BonoCAR"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="580dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoCAR"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lyInteligencia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -227,16 +344,25 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/sp_intelig"
+        <TextView
+            android:id="@+id/BonoINT"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="505dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoINT"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
+
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/lySabiduria"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -258,33 +384,30 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
-
-        <Spinner
-            android:id="@+id/sp_sabid"
+        <TextView
+            android:id="@+id/BonoSAB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            tools:layout_editor_absoluteX="267dp"
-            tools:layout_editor_absoluteY="543dp" />
+            android:text="Bonif. "
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/tvBonoSAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="##"
+            android:textSize="24sp" />
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnReset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"
+    <ListView
+        android:id="@+id/ListPersonaje"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Resetear"
-        android:textAlignment="center" />
+        android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/btnSiguiente"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="75dp"
-        android:enabled="true"
-        android:text="Siguiente" />
+
 
 </LinearLayout>

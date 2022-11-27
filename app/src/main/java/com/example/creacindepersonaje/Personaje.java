@@ -4,12 +4,28 @@ import java.io.Serializable;
 
 public class Personaje implements Serializable {
 
-
-
      private String Nombre;
      private String Raza;
      private String Sub_Raza;
      private String Clase;
+     private String Arma;
+     private String Armadura;
+
+    public String getArma() {
+        return Arma;
+    }
+
+    public void setArma(String arma) {
+        Arma = arma;
+    }
+
+    public String getArmadura() {
+        return Armadura;
+    }
+
+    public void setArmadura(String armadura) {
+        Armadura = armadura;
+    }
 
      public String getRaza() {
          return Raza;
@@ -35,11 +51,11 @@ public class Personaje implements Serializable {
 
      private int Vel;
      private int CA; //Clase de armadura
-     private int PG; //Puntos de golpe
+     private int PG; //Puntos de golpe o la Vida
      private int PGT; //Puntos de golpe temporales
 
      private int Level;
-     private String Alineamiento;
+
      private int EXP;
 
      private int espacioConjuros;
@@ -61,8 +77,7 @@ public class Personaje implements Serializable {
      private int PPT;//¿?
 
      private boolean AptitudMagica; //true: usa hechizos, false: no usa hechizos
-     private int CDSalvConjuro; //Clase dificultad salvacion de conjuro
-     private int BonificadorAtaqueConjuro;
+
 
      private int Inspiracion;
      private int BonoCompetencia;
@@ -269,11 +284,11 @@ public class Personaje implements Serializable {
      }
 
      public int getCA() {
-         return CA;
+         return CA+10;
      }
 
      public void setCA(int CA) {
-         this.CA = CA;
+         this.CA = CA+this.getModDes();
      }
 
      public int getPG() {
@@ -281,43 +296,33 @@ public class Personaje implements Serializable {
      }
 
      public void setPG() {
-         int PG = 0;
+         int PG=0;
+
          Dado dGolpe = new Dado();
-         if(Personaje.Clases.Clases[0].equals(this.getClase())){ //Picaro
-             dGolpe.setValorDado(Dado.Valor.d8);
-             for (int i = 0; i < this.getLevel(); i++) {
+         if(this.getClase().equals(Personaje.Clases.Clases[4])||//Bardo
+                 Personaje.Clases.Clases[3].equals(this.getClase())||//Druida
+                 Personaje.Clases.Clases[0].equals(this.getClase())){//Picaro
+             dGolpe.setValorDado(8);
+             for (int i = 0; i <= this.getLevel(); i++) {
                  PG = dGolpe.lanzarDado()+this.getModCon();
              }
              this.PG = PG;
          }
          if(Personaje.Clases.Clases[1].equals(this.getClase())){//Guerrero
-             dGolpe.setValorDado(Dado.Valor.d10);
-             for (int i = 0; i < this.getLevel(); i++) {
+             dGolpe.setValorDado(10);
+             for (int i = 0; i <= this.getLevel(); i++) {
                  PG = dGolpe.lanzarDado()+this.getModCon();
              }
              this.PG = PG;
          }
          if(Personaje.Clases.Clases[2].equals(this.getClase())){//Hechicero
-             dGolpe.setValorDado(Dado.Valor.d6);
-             for (int i = 0; i < this.getLevel(); i++) {
+             dGolpe.setValorDado(6);
+             for (int i = 0; i <= this.getLevel(); i++) {
                  PG = dGolpe.lanzarDado()+this.getModCon();
              }
              this.PG = PG;
          }
-         if(Personaje.Clases.Clases[3].equals(this.getClase())){//
-             dGolpe.setValorDado(Dado.Valor.d8);
-             for (int i = 0; i < this.getLevel(); i++) {
-                 PG = dGolpe.lanzarDado()+this.getModCon();
-             }
-             this.PG = PG;
-         }
-         if(Personaje.Clases.Clases[4].equals(this.getClase())){//Hechicero
-             dGolpe.setValorDado(Dado.Valor.d8);
-             for (int i = 0; i < this.getLevel(); i++) {
-                 PG = dGolpe.lanzarDado()+this.getModCon();
-             }
-             this.PG = PG;
-         }
+
      }
 
      public int getPGT() {
@@ -333,15 +338,7 @@ public class Personaje implements Serializable {
      }
 
      public void setLevel(int Level) {
-         this.Level = 1;
-     }
-
-     public String getAlineamiento() {
-         return Alineamiento;
-     }
-
-     public void setAlineamiento(String Alineamiento) {
-         this.Alineamiento = Alineamiento;
+         this.Level = Level;
      }
 
      public int getEXP() {
@@ -397,24 +394,11 @@ public class Personaje implements Serializable {
      }
 
      public void setAptitudMagica(boolean AptitudMagica) {
+
+
          this.AptitudMagica = AptitudMagica;
      }
 
-     public int getCDSalvConjuro() {
-         return CDSalvConjuro;
-     }
-
-     public void setCDSalvConjuro(int CDSalvConjuro) {
-         this.CDSalvConjuro = CDSalvConjuro;
-     }
-
-     public int getBonificadorAtaqueConjuro() {
-         return BonificadorAtaqueConjuro;
-     }
-
-     public void setBonificadorAtaqueConjuro(int BonificadorAtaqueConjuro) {
-         this.BonificadorAtaqueConjuro = BonificadorAtaqueConjuro;
-     }
 
      public int getInspiracion() {
          return Inspiracion;

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -15,28 +14,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.creacindepersonaje.Dado.Valor;
-import com.example.creacindepersonaje.Dado;
-import com.example.creacindepersonaje.Personaje;
-
 import java.util.ArrayList;
 
 public class Setear_Caracteristicas extends AppCompatActivity {
 
-    private TextView tvCV1;
-    private TextView tvCV2;
-    private TextView tvCV3;
-    private TextView tvCV4;
-    private TextView tvCV5;
-    private TextView tvCV6;
-    private Button btnLanzar;
+    private TextView tvCV1,tvCV2,tvCV3,tvCV4,tvCV5,tvCV6,tvSelectedValueSTR,tvSelectedValueINT,tvSelectedValueDES,tvSelectedValueSAB,tvSelectedValueCON,tvSelectedValueCAR;
+    private Button btnLanzar,btnSiguiente;
     Personaje p = new Personaje();
-    private Spinner sp_fuerza;
-    private Spinner sp_inteligencia;
-    private Spinner sp_destreza;
-    private Spinner sp_sabiduria;
-    private Spinner sp_constitucion;
-    private Spinner sp_carisma;
+    private Spinner sp_fuerza,sp_inteligencia,sp_destreza,sp_sabiduria,sp_constitucion,sp_carisma;
     private ArrayList<String> valores;
     private ArrayList<String> valoresReset;
     private ArrayAdapter adapterValoresFuerza;
@@ -45,16 +30,16 @@ public class Setear_Caracteristicas extends AppCompatActivity {
     private ArrayAdapter adapterValoresSabidu;
     private ArrayAdapter adapterValoresConstitu;
     private ArrayAdapter adapterValoresCarism;
-    private Button btnSiguiente;
-    private TextView tvSelectedValueSTR;
-    private TextView tvSelectedValueINT;
-    private TextView tvSelectedValueDES;
-    private TextView tvSelectedValueSAB;
-    private TextView tvSelectedValueCON;
-    private TextView tvSelectedValueCAR;
     int lanzamientos =1;
     private Button btnReset;
-    private static int CODE_CARACT = 1;
+    boolean dadoLanz = false;
+    boolean fue = false;
+    boolean des = false;
+    boolean intel = false;
+    boolean sabid = false;
+    boolean carism = false;
+    boolean consti = false;
+    String error = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,8 +49,6 @@ public class Setear_Caracteristicas extends AppCompatActivity {
         iniciarEventos();
     }
 
-
-
     private void iniciarComponentes(){
         tvCV1 = findViewById(R.id.tvCV1);
         tvCV2 = findViewById(R.id.tvCV2);
@@ -74,12 +57,12 @@ public class Setear_Caracteristicas extends AppCompatActivity {
         tvCV5 = findViewById(R.id.tvCV5);
         tvCV6 = findViewById(R.id.tvCV6);
 
-        tvSelectedValueSTR = findViewById(R.id.tvSelectedValueSTR);
-        tvSelectedValueINT = findViewById(R.id.tvSelectedValueINT);
-        tvSelectedValueDES = findViewById(R.id.tvSelectedValueDES);
-        tvSelectedValueSAB = findViewById(R.id.tvSelectedValueSAB);
-        tvSelectedValueCON = findViewById(R.id.tvSelectedValueCON);
-        tvSelectedValueCAR = findViewById(R.id.tvSelectedValueCAR);
+        tvSelectedValueSTR = findViewById(R.id.tvSTR);
+        tvSelectedValueINT = findViewById(R.id.tvINT);
+        tvSelectedValueDES = findViewById(R.id.tvDES);
+        tvSelectedValueSAB = findViewById(R.id.tvSAB);
+        tvSelectedValueCON = findViewById(R.id.tvCON);
+        tvSelectedValueCAR = findViewById(R.id.tvCAR);
 
         btnLanzar = findViewById(R.id.btnLanzar);
 
@@ -94,6 +77,7 @@ public class Setear_Caracteristicas extends AppCompatActivity {
         btnReset = findViewById(R.id.btnReset);
         btnReset.setEnabled(false);
     }
+
 
 
     private void resetSpinners(){
@@ -116,8 +100,18 @@ public class Setear_Caracteristicas extends AppCompatActivity {
         sp_sabiduria.setSelection(0);
         sp_sabiduria.setEnabled(true);
     }
+
+
+
     private void iniciarEventos(){
 
+        Intent intent = this.getIntent();
+        Bundle extra = intent.getExtras();
+
+        String name = extra.getString("Nombre");
+        String race = extra.getString("Raza");
+        String variant = extra.getString("SubRaza");
+        String cla = extra.getString("Clase");
 
         Context context = getApplicationContext();
         valores = new ArrayList<>();
@@ -129,11 +123,11 @@ public class Setear_Caracteristicas extends AppCompatActivity {
             public void onClick(View view) {
                 resetSpinners();
                 btnReset.setEnabled(true);
-
+                dadoLanz = true;
                 lanzamientos++;
                 if(lanzamientos==4){
                     btnLanzar.setEnabled(false);
-                    Toast.makeText(Setear_Caracteristicas.this, "No más intentos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(Setear_Caracteristicas.this, "No hay más intentos", Toast.LENGTH_LONG).show();
                 }
                 valores.clear();
                 valoresReset.clear();
@@ -182,6 +176,8 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                 adapterValoresCarism = new ArrayAdapter<>(context, android.R.layout.simple_spinner_item, valores);
                 adapterValoresCarism.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 sp_carisma.setAdapter(adapterValoresCarism);
+
+
             }
         });
 
@@ -192,6 +188,11 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueSTR.setText(sp_fuerza.getSelectedItem().toString());
                     valores.remove(sp_fuerza.getSelectedItem());
                     sp_fuerza.setEnabled(false);
+                    fue = true;
+                }
+                else{
+
+                    error+="\nAsigna un valor para Fuerza";
                 }
             }
             @Override
@@ -207,6 +208,10 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueCAR.setText(sp_carisma.getSelectedItem().toString());
                     valores.remove(sp_carisma.getSelectedItem());
                     sp_carisma.setEnabled(false);
+                    carism = true;
+                }
+                else{
+                    error+="\nAsigna un valor para Carisma";
                 }
             }
 
@@ -223,6 +228,10 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueCON.setText(sp_constitucion.getSelectedItem().toString());
                     valores.remove(sp_constitucion.getSelectedItem());
                     sp_constitucion.setEnabled(false);
+                    consti = true;
+                }
+                else{
+                    error+="\nAsigna un valor para Constitución";
                 }
             }
 
@@ -239,6 +248,10 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueINT.setText(sp_inteligencia.getSelectedItem().toString());
                     valores.remove(sp_inteligencia.getSelectedItem());
                     sp_inteligencia.setEnabled(false);
+                    intel = true;
+                }
+                else{
+                    error+="\nAsigna un valor para Inteligencia";
                 }
             }
 
@@ -255,6 +268,10 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueDES.setText(sp_destreza.getSelectedItem().toString());
                     valores.remove(sp_destreza.getSelectedItem());
                     sp_destreza.setEnabled(false);
+                    des = true;
+                }
+                else{
+                    error+="\nAsigna un valor para Destreza";
                 }
             }
 
@@ -271,6 +288,10 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     tvSelectedValueSAB.setText((sp_sabiduria.getSelectedItem().toString()));
                     valores.remove(sp_sabiduria.getSelectedItem());
                     sp_sabiduria.setEnabled(false);
+                    sabid = true;
+                }
+                else{
+                    error+="\nAsigna un valor para Sabiduría";
                 }
             }
             @Override
@@ -286,19 +307,34 @@ public class Setear_Caracteristicas extends AppCompatActivity {
                     valores.add(valoresReset.get(a));
                 }
                 resetSpinners();
-
             }
         });
 
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Añadir intent y pasar datos de un objeto instanciado
+
+                if(dadoLanz&&fue&&sabid&&intel&&des&&consti&&carism){
+                    Intent intent = new Intent(Setear_Caracteristicas.this,CreatedPersonaje.class);
+                    intent.putExtra("Nombre",name);
+                    intent.putExtra("Raza",race);
+                    intent.putExtra("Clase",cla);
+                    intent.putExtra("Variante",variant);
+                    intent.putExtra("STR",tvSelectedValueSTR.getText());
+                    intent.putExtra("DES",tvSelectedValueDES.getText());
+                    intent.putExtra("CON",tvSelectedValueCON.getText());
+                    intent.putExtra("INT",tvSelectedValueINT.getText());
+                    intent.putExtra("SAB",tvSelectedValueSAB.getText());
+                    intent.putExtra("CAR",tvSelectedValueCAR.getText());
+                    startActivity(intent);
+                }else{
+                    if(!dadoLanz){
+                    error+="Lanza los dados";
+                    }
+                    Toast.makeText(Setear_Caracteristicas.this, error, Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
-
-
-
     }
-
 }
