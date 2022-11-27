@@ -1,41 +1,33 @@
 public class Armadura {
     
     private String Nombre;
+    private int ClaseArmadura; //Valor base de la armadura + Destreza
+    private int Peso; //LIGERAS 8lb -> 15lb , Medias 16lb -> 40lb , Pesada 41lb -> 65lb.
+    private int Fuerza; //Fuerza requerida para usarse. Aplicable a armaduras superiores a 40lb (Pesadas)
+    
     public String getNombre() {
         return Nombre;
     }
     public void setNombre(String nombre) {
         Nombre = nombre;
     }
-    private int Coste;
-    public int getCoste() {
-        return Coste;
+    
+    
+    public int getClaseArmadura() {
+        return ClaseArmadura;
     }
-    public void setCoste(int coste) {
-        Coste = coste;
+    public void setClase_Armadura(int clase_Armadura) {
+        ClaseArmadura = claseArmadura;
     }
-    private int Clase_ArmaduraDA;
-    public int getClase_ArmaduraDA() {
-        return Clase_ArmaduraDA;
-    }
-    public void setClase_ArmaduraDA(int clase_ArmaduraDA) {
-        Clase_ArmaduraDA = clase_ArmaduraDA;
-    }
-    private int Fuerza;
+    
+    
     public int getFuerza() {
         return Fuerza;
     }
     public void setFuerza(int fuerza) {
         Fuerza = fuerza;
     }
-    private boolean Sigilo;
-    public boolean isSigilo() {
-        return Sigilo;
-    }
-    public void setSigilo(boolean sigilo) {
-        Sigilo = sigilo;
-    }
-    private int Peso;
+    
     
     public int getPeso() {
         return Peso;
@@ -48,7 +40,5 @@ public class Armadura {
         public static String[] tipo_Armadura={"Armadura ligera","Armadura media",
         "Armadura pesada", "Escudo"};
     }
-
-    
     
 }
