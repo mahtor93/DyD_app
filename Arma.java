@@ -4,7 +4,7 @@ public class Arma {
 
     private String nombre;
     private int Damage;
-    private String tipo_Arma
+    private String tipo_Arma;
     private boolean tipo_Damage;
     
     
