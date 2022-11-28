@@ -1,6 +1,7 @@
 package com.example.creacindepersonaje.Modelos;
 
 public class Monstruo {
+    private String nameMonstruo;
     private int CA;
     private int HP;
     private int VEL;
@@ -21,6 +22,14 @@ public class Monstruo {
 
     private static class actions{
         public static String[] action ={"Garras","Mordisco","Aguijon","Golpe","Atacar con Arma"};
+    }
+    
+    public String getNameMonstruo() {
+        return nameMonstruo;
+    }
+
+    public void setNameMonstruo(String nameMonstruo) {
+        this.nameMonstruo = nameMonstruo;
     }
 
     public int getCA() {
