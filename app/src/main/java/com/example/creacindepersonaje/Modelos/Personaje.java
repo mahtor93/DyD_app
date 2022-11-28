@@ -1,4 +1,4 @@
-package com.example.creacindepersonaje;
+package com.example.creacindepersonaje.Modelos;
 
 import java.io.Serializable;
 

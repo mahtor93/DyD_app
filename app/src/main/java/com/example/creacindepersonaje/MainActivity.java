@@ -14,6 +14,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.creacindepersonaje.Modelos.Personaje;
+
 import java.util.ArrayList;
 
 

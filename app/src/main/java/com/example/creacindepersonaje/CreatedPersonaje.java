@@ -14,6 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.example.creacindepersonaje.Modelos.Arma;
+import com.example.creacindepersonaje.Modelos.Armadura;
+import com.example.creacindepersonaje.Modelos.Personaje;
+
 import java.util.ArrayList;
 
 public class CreatedPersonaje extends AppCompatActivity {

@@ -26,6 +26,9 @@ public class DBConnection extends SQLiteOpenHelper {
             "fuerzaRequerida INTEGER,"+
             "descripcion STRING NOT NULL);";
 
+    private final String createPersonaje ="CREATE TABLE personajes("+
+            "";
+
     public DBConnection(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
     }

@@ -1,4 +1,4 @@
-package com.example.creacindepersonaje;//package;
+package com.example.creacindepersonaje.Modelos;//package;
 
 public class Arma {
 

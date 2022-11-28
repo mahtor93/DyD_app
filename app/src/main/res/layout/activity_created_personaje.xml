@@ -69,6 +69,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="###"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -84,6 +85,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="###"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -109,6 +111,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="###"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -124,6 +127,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="###"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -167,6 +171,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -194,11 +199,13 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/BonoDES"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Bonif. "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -207,6 +214,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -234,11 +242,13 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/BonoCON"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Bonif. "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -247,6 +257,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -274,11 +285,13 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/BonoCAR"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Bonif. "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -287,6 +300,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -314,11 +328,13 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/BonoINT"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Bonif. "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -327,6 +343,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -354,11 +371,13 @@
             android:layout_weight="1"
             android:textAlignment="center"
             android:textSize="20sp" />
+
         <TextView
             android:id="@+id/BonoSAB"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="Bonif. "
+            android:textAlignment="center"
             android:textSize="24sp" />
 
         <TextView
@@ -367,6 +386,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="##"
+            android:textAlignment="center"
             android:textSize="24sp" />
 
     </LinearLayout>

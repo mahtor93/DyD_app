@@ -1,6 +1,5 @@
 package com.example.creacindepersonaje;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
@@ -13,6 +12,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.creacindepersonaje.Modelos.Personaje;
 
 import java.util.ArrayList;
 
