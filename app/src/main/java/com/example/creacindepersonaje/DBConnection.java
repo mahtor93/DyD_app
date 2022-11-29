@@ -26,8 +26,51 @@ public class DBConnection extends SQLiteOpenHelper {
             "fuerzaRequerida INTEGER,"+
             "descripcion STRING NOT NULL);";
 
-    private final String createPersonaje ="CREATE TABLE personajes("+
-            "";
+    private final String createHechizos = "CREATE TABLE spell("+
+            "idHechizo INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "NOMBRE_HECHIZO TEXT NOT NULL,"+
+            "NIVEL_HECHIZO TEXT NOT NULL,"+
+            "DAMAGE INTEGER NOT NULL,"+
+            "HEAL INTEGER NOT NULL,"+
+            "SHIELD INTEGER NOT NULL," +
+            "DESCRIPCION TEXT,"+
+            "TIPO_HECHIZO TEXT NOT NULL);";
+
+    private final String createPersonaje = "CREATE TABLE personajes ("+
+            "idPersonaje INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,"+
+            "NOMBRE_PERSONAJE TEXT NOT NULL,"+
+            "RAZA_PERSONAJE TEXT NOT NULL,"+
+            "SUBRAZA_PERSONAJE TEXT,"+
+            "CLASE_PERSONAJE TEXT NOT NULL,"+
+            "idHechizo INTEGER,"+
+            "idArma INTEGER,"+
+            "idArmadura INTEGER,"+
+            "FUERZA INTEGER NOT NULL,"+
+            "DESTREZA INTEGER NOT NULL,"+
+            "CONSTITUCION INTEGER NOT NULL,"+
+            "INTELIGENCIA INTEGER NOT NULL,"+
+            "SABIDURIA INTEGER NOT NULL,"+
+            "CARISMA INTEGER NOT NULL,"+
+            "MOD_FUE INTEGER NOT NULL,"+
+            "MOD_DES INTEGER NOT NULL,"+
+            "MOD_CON INTEGER NOT NULL,"+
+            "MOD_INT INTEGER NOT NULL,"+
+            "MOD_SAB INTEGER NOT NULL,"+
+            "MOD_CAR INTEGER NOT NULL,"+
+            "VEL INTEGER NOT NULL,"+
+            "CA INTEGER NOT NULL,"+
+            "PG INTEGER NOT NULL,"+
+            "NIVEL INTEGER NOT NULL,"+
+            "EXP INTEGER NOT NULL,"+
+            "ESPACIO_CONJUROS INTEGER,"+
+            "APTITUD_MAGICA INTEGER NOT NULL,"+
+            "INSPIRACION INTEGER,"+
+            "BONO_COMPETENCIA INTEGER NOT NULL,"+
+            "INICIATIVA INTEGER);";
+
+
+
+
 
     public DBConnection(@Nullable Context context, @Nullable String name, @Nullable SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
@@ -37,10 +80,19 @@ public class DBConnection extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(createArmaduras);
         db.execSQL(createArmas);
+        db.execSQL(createPersonaje);
+        db.execSQL(createHechizos);
         poblarItems(db);
     }
 
     private void poblarItems(SQLiteDatabase db){
+        //Inserción de hechizos básicos
+        db.execSQL("INSERT INTO Spell(nombre_hechizo,nivel_hechizo,damage,heal,shield,descripcion,tipo_hechizo) " +
+                "VALUES('Descarga de fuego',1,10,0,0,'ataque a distancia, lanzas una llama que quema lo que toca.','Evocacion')");
+        db.execSQL("INSERT INTO Spell(nombre_hechizo,nivel_hechizo,damage,heal,shield,descripcion,tipo_hechizo) VALUES('Armadura de mago',1,0,0,13,'Armadura mágica que protege a quien la invoca','Abjuracion')");
+        db.execSQL("INSERT INTO Spell(nombre_hechizo,nivel_hechizo,damage,heal,shield,descripcion,tipo_hechizo) VALUES('Curar Heridas',1,0,8,0,'Manos sanadoras. No puedes sanar a muertos vivientes o autómatas','Evocacion')");
+        db.execSQL("INSERT INTO Spell(nombre_hechizo,nivel_hechizo,damage,heal,shield,descripcion,tipo_hechizo) VALUES('Rociada Venenosa',1,12,0,0,'Esparces gas venenoso que nace de tus manos','Conjuracion')");
+
         //Inserción de las armas básicas.
         db.execSQL("INSERT INTO armas (nombre,damage,tipoArma,tipoDamage,descripcion) VALUES ('Daga',4,'Ligera','Perforante','Pequeña daga ligera que también puede ser arrojada');");
         db.execSQL("INSERT INTO armas (nombre,damage,tipoArma,tipoDamage,descripcion) VALUES ('Lanza',6,'A Distancia','Perforante','Lanza que puede ser utilizada a una mano, dos manos o ser arrojada');");
@@ -64,6 +116,8 @@ public class DBConnection extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO armaduras(nombre,claseArmadura,peso,fuerzaRequerida,descripcion) VALUES('Cota de malla',16,55,13,'Armadura de malla pesada');");
         db.execSQL("INSERT INTO armaduras(nombre,claseArmadura,peso,fuerzaRequerida,descripcion) VALUES('Media Armadura',15,40,0,'Armadura semiligera sigilosa');");
         db.execSQL("INSERT INTO armaduras(nombre,claseArmadura,peso,fuerzaRequerida,descripcion) VALUES('Pieles',12,12,0,'Cobertura de pieles para proteger del daño');");
+
+
 
     }
 
