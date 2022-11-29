@@ -2,11 +2,20 @@ package com.example.creacindepersonaje.Modelos;//package;
 
 public class Arma {
 
+    private int idArma;
     private String nombre;
     private int Damage;
     private String tipoArma;
     private String tipoDamage;
     private String Descripcion;
+
+    public int getIdArma() {
+        return idArma;
+    }
+
+    public void setIdArma(int idArma) {
+        this.idArma = idArma;
+    }
 
     public String getDescripcion() {
         return Descripcion;
